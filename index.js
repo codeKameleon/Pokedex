@@ -5,7 +5,6 @@ search_pokedex.addEventListener('submit', e => {
     const search_value = document.querySelector('.pokemon-name-control').value
     e.preventDefault()
     getPokemon(search_value)
-    // getPokemonPreviousEvolution(search_value)
 })
 
 const getPokemon = async (id, name) => {
@@ -13,18 +12,6 @@ const getPokemon = async (id, name) => {
     const response = await fetch(url)
     const pokemon = await response.json()
     renderPokemonCard(pokemon)
-}
-
-const getPokemonPreviousEvolution = async (id, name) => {
-    const url = `https://pokeapi.co/api/v2/pokemon-species/${id || name}`
-    const response = await fetch(url)
-    const pokemon_species = await response.json()
-    const previous_evolution = pokemon_species.evolves_from_species
-    if(previous_evolution !== null) {
-        console.log(`previous evolution : ${previous_evolution.name}`)
-    } else {
-        console.log('This pokemon has no previous evolution')
-    }
 }
 
 const renderPokemonCard = pokemon => {
@@ -42,7 +29,6 @@ const renderPokemonCard = pokemon => {
     const pokemon_sprite = document.createElement('img')
     pokemon_sprite.src = sprites.front_default
 
-
     const pokemon_moves = document.createElement('ul')
     const basic_moves = moves.slice(0,4)
     basic_moves.forEach(basic_move => {
@@ -57,6 +43,35 @@ const renderPokemonCard = pokemon => {
     pokemon_card.appendChild(pokemon_sprite)
     pokemon_card.appendChild(pokemon_moves)
 
+
+    const getPokemonPreviousEvolution = async () => {
+        const url = `https://pokeapi.co/api/v2/pokemon-species/${id || name}`
+        const response = await fetch(url)
+        const pokemon_species = await response.json()
+        const previous_evolution = pokemon_species.evolves_from_species
+
+        if(previous_evolution !== null) {
+            const url = `https://pokeapi.co/api/v2/pokemon/${previous_evolution.name}`
+            const response = await fetch(url)
+            const pokemon_evolution_details = await response.json()
+
+            renderPreviousEvolution(pokemon_card, pokemon_evolution_details)
+        } 
+    }
+
+    getPokemonPreviousEvolution()
+
     pokedex.appendChild(pokemon_card)
 
+}
+
+const renderPreviousEvolution = (pokemon_card, previous_evolution) => {
+    const previous_evolution_name = document.createElement('span')
+    previous_evolution_name.textContent = previous_evolution.name
+
+    const previous_evolution_sprite = document.createElement('img')
+    previous_evolution_sprite.src = previous_evolution.sprites.front_default
+
+    pokemon_card.appendChild(previous_evolution_name)
+    pokemon_card.appendChild(previous_evolution_sprite)
 }
