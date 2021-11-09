@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 * {
     box-sizing: border-box;
 }
@@ -6,10 +8,40 @@ body {
     font-size: 16px;
     margin: 0;
     padding: 0;
+    font-family: 'Press Start 2P', cursive;
 }
 
+header,
 main {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     padding: 2rem;
+}
+
+header {
+ background-color: #CE1030;
+ color: #fefefe;
+}
+
+.main-title {
+    margin-top: 0;
+}
+
+.search-control,
+.submit-btn {
+    padding: .5rem;
+    font-family: 'Press Start 2P', cursive;
+    font-size: .65rem;
+}
+
+.submit-btn {
+    width: 100px;
+    border: none;
+}
+
+.submit-btn:hover {
+    cursor: pointer;
 }
 
 .pokedex {
@@ -23,6 +55,6 @@ main {
     align-items: center;
     flex-direction: column;
     margin: 2rem 0;
-    padding: .5rem 0;
+    padding: 2rem;
     box-shadow: 0 0 10px 0 rgba(0,0,0,.3)
 }

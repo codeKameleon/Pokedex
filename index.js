@@ -2,7 +2,7 @@ const search_pokedex = document.querySelector('.search-pokedex')
 const pokedex =  document.querySelector('.pokedex')
 
 search_pokedex.addEventListener('submit', e => {
-    const search_value = document.querySelector('.pokemon-name-control').value
+    const search_value = document.querySelector('.search-control').value
     e.preventDefault()
     getPokemon(search_value)
 })
