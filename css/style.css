@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
-.flex-center, main, .search-pokedex, .pokedex .left-screen__top .light-container, .pokedex .left-screen__bottom, .pokedex .left-screen__bottom .main-screen__top-lights, .pokedex .left-screen__bottom .main-screen__display .not-found-message,
+.flex-center, main, .search-pokedex, .pokedex .left-screen__top .light-container, .pokedex .left-screen__bottom, .pokedex .left-screen__bottom .main-screen__top-lights, .pokedex .left-screen__bottom .main-screen__display .pokemon-image-container, .pokedex .left-screen__bottom .main-screen__display .not-found-message,
 .pokedex .left-screen__bottom .main-screen__display .search-message, .pokedex .right-screen__bottom .info-container {
   display: flex;
   align-items: center;
@@ -43,7 +43,7 @@ main {
       background-color: #032d28;
       color: #fefefe; }
   .search-pokedex .submit-btn {
-    margin-top: 10px;
+    margin: .4rem 0 .8rem;
     width: 100%;
     border: none;
     text-transform: uppercase;
@@ -58,24 +58,34 @@ main {
 
 .pokemon-card {
   display: flex;
-  align-items: center;
   flex-direction: column;
-  margin: 2rem 0;
-  padding: 2rem;
-  border-radius: 2px;
-  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2); }
+  padding: 1rem;
+  font-size: .7rem; }
+  .pokemon-card > * {
+    display: flex;
+    flex-direction: column;
+    margin: .4rem 0; }
   .pokemon-card .pokemon-moves {
-    list-style-type: bullets; }
+    list-style-type: square;
+    margin: .1rem 0 0;
+    padding: 0 0 0 1rem; }
+    .pokemon-card .pokemon-moves li {
+      margin: .8rem 0; }
   .pokemon-card .evolution-container {
     display: flex;
     width: 100%;
     padding: .8rem;
     flex-direction: column;
     align-items: center;
-    background-color: #eee; }
+    border: 3px dotted #fefefe; }
     .pokemon-card .evolution-container .evolution-title {
       font-size: .65rem;
       margin-bottom: .6rem; }
+    .pokemon-card .evolution-container .previous-evolution-name {
+      margin-top: .5rem;
+      font-size: 1.1rem; }
+    .pokemon-card .evolution-container .previous-evolution-sprite {
+      width: 100%; }
 
 .pokedex {
   min-width: 750px;
@@ -225,13 +235,10 @@ main {
           background-color: white;
           border: 1px solid black;
           border-radius: 10px; }
-          .pokedex .left-screen__bottom .main-screen__display .pokemon-image {
-            width: 100%;
-            height: 100%;
-            background-size: 70% auto;
-            background-repeat: no-repeat;
-            background-position: center;
-            background-image: url(https://i.imgur.com/zIxgrDd.png); }
+          .pokedex .left-screen__bottom .main-screen__display .pokemon-image-container {
+            height: 100%; }
+            .pokedex .left-screen__bottom .main-screen__display .pokemon-image-container img {
+              width: 70%; }
           .pokedex .left-screen__bottom .main-screen__display .not-found-message,
           .pokedex .left-screen__bottom .main-screen__display .search-message {
             height: 100%;
@@ -404,10 +411,6 @@ main {
           width: 220px;
           height: 260px;
           font-size: small;
-          display: grid;
-          grid-template-columns: 1.2fr 0.8fr;
-          grid-template-rows: 0.5fr 0.5fr 0.5fr 1fr;
-          grid-row-gap: 0.5rem;
           overflow: auto; }
           .pokedex .right-screen__bottom .info-container .info-screen::-webkit-scrollbar {
             width: 0.5em; }
