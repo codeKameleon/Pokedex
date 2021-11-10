@@ -1,5 +1,5 @@
 const search_pokedex = document.querySelector('.search-pokedex')
-const pokedex =  document.querySelector('.pokedex')
+const info_screen_pokedex =  document.querySelector('.info-screen')
 
 search_pokedex.addEventListener('submit', e => {
     const search_value = document.querySelector('.search-control').value
@@ -51,6 +51,8 @@ const renderPokemonCard = pokemon => {
         const pokemon_species = await response.json()
         const previous_evolution = pokemon_species.evolves_from_species
 
+        console.log(pokemon_species)
+
         if(previous_evolution !== null) {
             const url = `https://pokeapi.co/api/v2/pokemon/${previous_evolution.name}`
             const response = await fetch(url)
@@ -62,7 +64,7 @@ const renderPokemonCard = pokemon => {
 
     getPokemonPreviousEvolution()
 
-    pokedex.appendChild(pokemon_card)
+    info_screen_pokedex.appendChild(pokemon_card)
 
 }
 
