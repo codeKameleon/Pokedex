@@ -30,6 +30,7 @@ const renderPokemonCard = pokemon => {
     pokemon_sprite.src = sprites.front_default
 
     const pokemon_moves = document.createElement('ul')
+    pokemon_moves.className = 'pokemon-moves'
     const basic_moves = moves.slice(0,4)
     basic_moves.forEach(basic_move => {
         console.log()
@@ -66,12 +67,22 @@ const renderPokemonCard = pokemon => {
 }
 
 const renderPreviousEvolution = (pokemon_card, previous_evolution) => {
+    const evolution_container = document.createElement('div')
+
+    const evolution_title =  document.createElement('span')
+    evolution_title.className =  'evolution-title'
+    evolution_title.textContent = 'Evolved from'
+
+    evolution_container.className =  'evolution-container'
     const previous_evolution_name = document.createElement('span')
     previous_evolution_name.textContent = previous_evolution.name
 
     const previous_evolution_sprite = document.createElement('img')
     previous_evolution_sprite.src = previous_evolution.sprites.front_default
 
-    pokemon_card.appendChild(previous_evolution_name)
-    pokemon_card.appendChild(previous_evolution_sprite)
+    evolution_container.appendChild(evolution_title)
+    evolution_container.appendChild(previous_evolution_name)
+    evolution_container.appendChild(previous_evolution_sprite)
+
+    pokemon_card.appendChild(evolution_container)
 }

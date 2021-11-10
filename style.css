@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
+@counter-style attack-emoji {
+    system: cyclic;
+    symbols: "\2694";
+    suffix: " ";
+  }
 * {
     box-sizing: border-box;
 }
@@ -56,5 +61,24 @@ header {
     flex-direction: column;
     margin: 2rem 0;
     padding: 2rem;
-    box-shadow: 0 0 10px 0 rgba(0,0,0,.3)
+    border-radius: 2px;
+    box-shadow: 0 0 5px 0 rgba(0,0,0,.2)
+}
+
+.pokemon-moves {
+    list-style-type: attack-emoji;
+}
+
+.evolution-container {
+    display: flex;
+    width: 100%;
+    padding: .8rem;
+    flex-direction: column;
+    align-items: center;
+    background-color: #eee;
+}
+
+.evolution-title {
+    font-size: .65rem;
+    margin-bottom: .6rem;
 }
