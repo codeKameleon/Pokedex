@@ -537,11 +537,17 @@ main {
           .info-screen {
             width: 220px;
             height: 260px;
-  
             font-size: small;
-
-  
             overflow: auto;
+
+            .info-screen-label {
+              margin-bottom: 1rem;
+              text-decoration: underline;
+            }
+
+            .info-screen-value {
+              margin-bottom: 1.25rem;
+            }
   
             &::-webkit-scrollbar {
               width: 0.5em;
@@ -550,22 +556,6 @@ main {
             &::-webkit-scrollbar-thumb {
               border-radius: 10px;
               background-color: rgba(255,255,255,0.2);
-            }
-  
-            .label {
-              text-transform: uppercase;
-            }
-  
-            .desc {
-              margin-left: 0.5rem;
-            }
-  
-            #evolution {
-              grid-area: 3 / 1 / span 1 /span 2;
-            }
-  
-            #bio {
-              grid-area: 4 / 1 / span 1 /span 2;
             }
           }
         }
@@ -591,7 +581,7 @@ main {
         padding: 0 0 0 1rem;
 
         li {
-            margin: .8rem 0;
+            margin: 0 0 .8rem;
         }
     }
 
@@ -617,4 +607,10 @@ main {
             width: 100%;
         }
     }
+}
+
+.error-message {
+  text-align: center;
+  padding: 1rem;
+  line-height: 1.25rem;
 }

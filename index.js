@@ -14,9 +14,14 @@ const capitalizeFirstLetter = str => {
 
 const getPokemon = async (id, name) => {
     const url = `https://pokeapi.co/api/v2/pokemon/${id || name}`
-    const response = await fetch(url)
-    const pokemon = await response.json()
-    renderPokemonCard(pokemon)
+    try {
+        const response = await fetch(url)
+        const pokemon = await response.json()
+        renderPokemonCard(pokemon)
+    } catch(err) {
+        renderErrorMessage()
+        console.log('ERROR',err)
+    }
 }
 
 const renderPokemonCard = pokemon => {
@@ -30,12 +35,17 @@ const renderPokemonCard = pokemon => {
 
     // ID
     const pokemon_id = document.createElement('span')
-    pokemon_id.textContent = `ID :  ${id}`
+    pokemon_id.innerHTML = `
+        <div class="info-screen-label">ID</div>
+        <div class="info-screen-value"> ${id}</div>
+    `
 
     // NAME
-    const pokemon_name = document.createElement('span')
-    pokemon_name.textContent = `NAME :  ${capitalizeFirstLetter(name)}`
-
+    const pokemon_name = document.createElement('div')
+    pokemon_name.innerHTML = `
+        <div class="info-screen-label">NAME</div>
+        <div class="info-screen-value"> ${capitalizeFirstLetter(name)}</div>
+    `
     // SPRITE
     const pokemon_sprite = document.createElement('img')
     pokemon_sprite.src = sprites.front_default
@@ -43,8 +53,9 @@ const renderPokemonCard = pokemon => {
     // MOVES
     const pokemon_moves_container = document.createElement('div')
 
-    const pokemon_moves_title =  document.createElement('span')
-    pokemon_moves_title.textContent =  'MOVES : '
+    const pokemon_moves_title =  document.createElement('div')
+    pokemon_moves_title.className = 'info-screen-label'
+    pokemon_moves_title.textContent =  'MOVES'
 
     const pokemon_moves_list = document.createElement('ul')
     pokemon_moves_list.className = 'pokemon-moves'
@@ -87,6 +98,16 @@ const renderPokemonCard = pokemon => {
 
     info_screen_pokedex.appendChild(pokemon_card)
 
+}
+
+const renderErrorMessage = () => {
+    pokemon_image_container.innerHTML = ''
+    info_screen_pokedex.innerHTML = ''
+
+    const error_message =  document.createElement('p')
+    error_message.className = 'error-message'
+    error_message.textContent = 'Pokemon not found'
+    pokemon_image_container.appendChild(error_message)
 }
 
 const renderPreviousEvolution = (pokemon_card, previous_evolution) => {
